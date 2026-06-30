@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submit Your Game — GamerFair</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#080810;font-family:'Segoe UI',Arial,sans-serif;color:#fff;min-height:100vh;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(8,8,16,0.97);border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.logo{font-size:1.6rem;font-weight:900;cursor:pointer;background:linear-gradient(135deg,#00f5a0,#00d9f5,#a855f7);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-btn{padding:9px 22px;background:linear-gradient(135deg,#00f5a0,#00d9f5);border:none;border-radius:50px;font-size:0.8rem;font-weight:900;color:#000;cursor:pointer;text-decoration:none;}
+
+.hero{text-align:center;padding:80px 40px 40px;}
+.hero-badge{display:inline-block;padding:7px 20px;background:rgba(0,245,160,0.1);border:1px solid rgba(0,245,160,0.3);border-radius:50px;font-size:0.65rem;font-weight:800;letter-spacing:3px;color:#00f5a0;margin-bottom:24px;}
+.hero h1{font-size:3rem;font-weight:900;margin-bottom:16px;}
+.hero h1 span{background:linear-gradient(135deg,#00f5a0,#00d9f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:#555;font-size:1rem;max-width:560px;margin:0 auto;line-height:1.8;}
+
+.form-wrap{max-width:680px;margin:0 auto;padding:40px 40px 80px;}
+.form-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.08);border-radius:24px;padding:40px;}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:0.72rem;font-weight:800;color:#555;letter-spacing:2px;margin-bottom:8px;}
+.field input,.field select,.field textarea{width:100%;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);border-radius:14px;color:#fff;font-size:0.9rem;outline:none;font-family:inherit;transition:border-color 0.2s;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#00f5a0;}
+.field select option{background:#111;}
+.field textarea{resize:vertical;min-height:100px;}
+.field input::placeholder,.field textarea::placeholder{color:#333;}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.submit-btn{width:100%;padding:16px;background:linear-gradient(135deg,#00f5a0,#00d9f5);border:none;border-radius:50px;font-size:1rem;font-weight:900;color:#000;cursor:pointer;margin-top:8px;letter-spacing:0.5px;}
+.submit-btn:disabled{opacity:0.5;cursor:not-allowed;}
+.error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:12px;padding:12px 16px;font-size:0.8rem;color:#ef4444;margin-bottom:20px;display:none;}
+.success{display:none;text-align:center;padding:40px 20px;}
+.success-icon{font-size:4rem;margin-bottom:20px;}
+.success h2{font-size:1.8rem;font-weight:900;margin-bottom:12px;background:linear-gradient(135deg,#00f5a0,#00d9f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.success p{color:#555;font-size:0.9rem;line-height:1.8;margin-bottom:24px;}
+.back-btn{padding:12px 32px;background:linear-gradient(135deg,#00f5a0,#00d9f5);border:none;border-radius:50px;font-size:0.85rem;font-weight:900;color:#000;cursor:pointer;text-decoration:none;display:inline-block;}
+
+/* HOW IT WORKS */
+.how{max-width:680px;margin:0 auto;padding:0 40px 60px;}
+.how h3{font-size:0.65rem;letter-spacing:3px;color:#00f5a0;margin-bottom:20px;font-weight:900;}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.step{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:20px;text-align:center;}
+.step-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#00f5a0,#00d9f5);display:flex;align-items:center;justify-content:center;font-size:0.85rem;font-weight:900;color:#000;margin:0 auto 12px;}
+.step-title{font-size:0.8rem;font-weight:900;margin-bottom:6px;}
+.step-desc{font-size:0.72rem;color:#444;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="window.location.href='index.html'">🎮 GamerFair</div>
+  <a href="index.html" class="nav-btn">← Back to Games</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">🎮 GAME DEVELOPERS WANTED</div>
+  <h1>Submit Your<br><span>Game to GamerFair</span></h1>
+  <p>Built a game? Get it in front of thousands of kids. GamerFair publishes kid-made games for free.</p>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how">
+  <h3>HOW IT WORKS</h3>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Submit</div>
+      <div class="step-desc">Fill out the form below with your game details and link.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Review</div>
+      <div class="step-desc">GamerFair reviews your game for safety and fun. Takes 1-3 days.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Published!</div>
+      <div class="step-desc">Your game goes live on GamerFair for thousands of kids to play!</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap">
+  <div class="form-card">
+    <div class="error" id="error"></div>
+    <div id="form">
+      <div class="row">
+        <div class="field">
+          <label>YOUR NAME</label>
+          <input type="text" id="devName" placeholder="First name is fine"/>
+        </div>
+        <div class="field">
+          <label>YOUR AGE</label>
+          <input type="number" id="devAge" min="4" max="17" placeholder="How old are you?"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>GAME NAME</label>
+        <input type="text" id="gameName" placeholder="What's your game called?"/>
+      </div>
+      <div class="field">
+        <label>GAME LINK</label>
+        <input type="url" id="gameLink" placeholder="https://... (GitHub Pages, itch.io, etc.)"/>
+      </div>
+      <div class="field">
+        <label>CATEGORY</label>
+        <select id="gameCategory">
+          <option value="action">🎯 Action</option>
+          <option value="adventure">🗺️ Adventure</option>
+          <option value="puzzle">🧩 Puzzle</option>
+          <option value="racing">🏎️ Racing</option>
+          <option value="survival">💀 Survival</option>
+          <option value="rpg">⚔️ RPG</option>
+          <option value="platformer">🏃 Platformer</option>
+          <option value="educational">📚 Educational</option>
+          <option value="other">✨ Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>GAME DESCRIPTION</label>
+        <textarea id="gameDesc" placeholder="Tell us what your game is about! What do you do? What makes it fun?"></textarea>
+      </div>
+      <div class="field">
+        <label>HOW DID YOU MAKE IT?</label>
+        <select id="gameTech">
+          <option value="html">HTML / JavaScript</option>
+          <option value="roblox">Roblox Studio</option>
+          <option value="unity">Unity</option>
+          <option value="godot">Godot</option>
+          <option value="scratch">Scratch</option>
+          <option value="gdevelop">GDevelop</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>ANYTHING ELSE? (optional)</label>
+        <textarea id="gameExtra" placeholder="Any special instructions, credits, or things we should know..."></textarea>
+      </div>
+      <button class="submit-btn" id="submitBtn" onclick="submitGame()">🚀 Submit My Game</button>
+    </div>
+
+    <div class="success" id="success">
+      <div class="success-icon">🎮</div>
+      <h2>Game Submitted!</h2>
+      <p>Thanks for submitting your game to GamerFair!<br>We'll review it in 1-3 days.<br>If approved, it'll go live for thousands of kids to play!</p>
+      <a href="index.html" class="back-btn">← Back to GamerFair</a>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+const app = initializeApp({apiKey:"AIzaSyBF8NZvpjz8blZi4LL-Q7n-Q3Je73mZ5mo",authDomain:"kid-stock-7a377.firebaseapp.com",projectId:"kid-stock-7a377",storageBucket:"kid-stock-7a377.firebasestorage.app",messagingSenderId:"153069846242",appId:"1:153069846242:web:bdae0c7bb120e9245228bb"});
+const db = getFirestore(app);
+
+window.submitGame = async function() {
+  const devName = document.getElementById('devName').value.trim();
+  const devAge = parseInt(document.getElementById('devAge').value);
+  const gameName = document.getElementById('gameName').value.trim();
+  const gameLink = document.getElementById('gameLink').value.trim();
+  const gameCategory = document.getElementById('gameCategory').value;
+  const gameDesc = document.getElementById('gameDesc').value.trim();
+  const gameTech = document.getElementById('gameTech').value;
+  const gameExtra = document.getElementById('gameExtra').value.trim();
+  const err = document.getElementById('error');
+  const btn = document.getElementById('submitBtn');
+  err.style.display = 'none';
+
+  if(!devName || !devAge || !gameName || !gameLink || !gameDesc) {
+    err.textContent = 'Please fill in all the required fields!';
+    err.style.display = 'block';
+    return;
+  }
+  if(devAge < 4 || devAge > 17) {
+    err.textContent = 'GamerFair is for kids ages 4-17!';
+    err.style.display = 'block';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting...';
+
+  try {
+    await addDoc(collection(db, 'gameSubmissions'), {
+      devName,
+      devAge,
+      gameName,
+      gameLink,
+      gameCategory,
+      gameDesc,
+      gameTech,
+      gameExtra,
+      status: 'pending',
+      submittedAt: serverTimestamp()
+    });
+    document.getElementById('form').style.display = 'none';
+    document.getElementById('success').style.display = 'block';
+  } catch(e) {
+    err.textContent = 'Something went wrong. Try again!';
+    err.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = '🚀 Submit My Game';
+  }
+};
+</script>
+</body>
+</html>
