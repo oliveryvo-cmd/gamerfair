@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GamerFair — Fair Gaming for Every Kid</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#080810;font-family:'Segoe UI',Arial,sans-serif;color:#fff;overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(8,8,16,0.97);border-bottom:1px solid rgba(255,255,255,0.07);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.logo{font-size:1.8rem;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.logo-icon{font-size:1.6rem;}
+.logo-text{background:linear-gradient(135deg,#00f5a0,#00d9f5,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.nav-links{display:flex;gap:24px;align-items:center;}
+.nav-links a{color:#666;text-decoration:none;font-size:0.82rem;font-weight:700;transition:color 0.2s;}
+.nav-links a:hover{color:#00f5a0;}
+.nav-btn{padding:9px 22px;background:linear-gradient(135deg,#00f5a0,#00d9f5);border:none;border-radius:50px;font-size:0.8rem;font-weight:900;color:#000;cursor:pointer;text-decoration:none;}
+
+/* HERO */
+.hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;pointer-events:none;}
+.orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.15;}
+.orb1{width:600px;height:600px;background:#00f5a0;top:-200px;left:-100px;animation:float1 10s ease-in-out infinite;}
+.orb2{width:500px;height:500px;background:#a855f7;bottom:-100px;right:-100px;animation:float2 8s ease-in-out infinite;}
+.orb3{width:300px;height:300px;background:#f97316;top:40%;left:50%;animation:float3 7s ease-in-out infinite;}
+@keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-40px);}}
+@keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(30px);}}
+@keyframes float3{0%,100%{transform:translateX(0);}50%{transform:translateX(-30px);}}
+.hero-content{position:relative;z-index:2;}
+.hero-badge{display:inline-block;padding:7px 20px;background:rgba(0,245,160,0.1);border:1px solid rgba(0,245,160,0.3);border-radius:50px;font-size:0.65rem;font-weight:800;letter-spacing:3px;color:#00f5a0;margin-bottom:28px;}
+.hero h1{font-size:5rem;font-weight:900;line-height:1.05;margin-bottom:20px;}
+.hero h1 .grad{background:linear-gradient(135deg,#00f5a0,#00d9f5,#a855f7,#f97316);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{font-size:1.05rem;color:#666;max-width:560px;line-height:1.9;margin:0 auto 40px;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;}
+.btn-main{padding:16px 40px;background:linear-gradient(135deg,#00f5a0,#00d9f5);border:none;border-radius:50px;font-size:0.95rem;font-weight:900;color:#000;cursor:pointer;text-decoration:none;box-shadow:0 8px 30px rgba(0,245,160,0.3);}
+.btn-ghost{padding:16px 40px;background:transparent;border:2px solid rgba(255,255,255,0.12);border-radius:50px;font-size:0.95rem;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;}
+.hero-stats{display:flex;gap:48px;justify-content:center;flex-wrap:wrap;}
+.h-stat-n{font-size:2.2rem;font-weight:900;background:linear-gradient(135deg,#00f5a0,#00d9f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.h-stat-l{font-size:0.6rem;letter-spacing:2px;color:#444;margin-top:4px;}
+
+/* SECTION */
+.section{padding:80px 48px;max-width:1200px;margin:0 auto;}
+.section-tag{font-size:0.6rem;letter-spacing:4px;font-weight:900;color:#00f5a0;margin-bottom:12px;}
+.section-h{font-size:2.6rem;font-weight:900;margin-bottom:16px;}
+.section-sub{font-size:0.95rem;color:#555;max-width:520px;line-height:1.8;margin-bottom:52px;}
+
+/* GAMES GRID */
+.games-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.game-card{border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);}
+.game-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,245,160,0.1);border-color:rgba(0,245,160,0.2);}
+.game-thumb{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;}
+.game-badge{position:absolute;top:12px;left:12px;font-size:0.55rem;letter-spacing:2px;padding:4px 10px;border-radius:50px;font-weight:900;}
+.game-info{padding:20px;}
+.game-title{font-size:0.95rem;font-weight:900;margin-bottom:6px;}
+.game-desc{font-size:0.75rem;color:#555;line-height:1.6;margin-bottom:12px;}
+.game-meta{display:flex;align-items:center;justify-content:space-between;}
+.game-tag{font-size:0.6rem;letter-spacing:1px;color:#888;font-weight:700;}
+.game-play{padding:7px 18px;border-radius:50px;font-size:0.7rem;font-weight:900;color:#000;border:none;cursor:pointer;text-decoration:none;}
+
+/* FEATURES */
+.features{background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);padding:80px 48px;}
+.features-inner{max-width:1100px;margin:0 auto;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px;}
+.feat{text-align:center;padding:32px 20px;border-radius:20px;border:1px solid rgba(255,255,255,0.05);}
+.feat-icon{font-size:2.4rem;margin-bottom:16px;}
+.feat-title{font-size:0.9rem;font-weight:900;margin-bottom:8px;}
+.feat-desc{font-size:0.75rem;color:#555;line-height:1.7;}
+
+/* LEADERBOARD */
+.lb-table{width:100%;border-collapse:collapse;}
+.lb-table th{font-size:0.6rem;letter-spacing:2px;color:#444;padding:12px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.05);}
+.lb-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:0.85rem;}
+.lb-rank{font-weight:900;color:#00f5a0;}
+.lb-avatar{width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;margin-right:10px;vertical-align:middle;}
+.lb-name{font-weight:700;}
+.lb-pts{font-weight:900;color:#f97316;}
+
+/* JOIN */
+.join{padding:120px 48px;text-align:center;position:relative;overflow:hidden;}
+.join-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,245,160,0.06),transparent 70%);pointer-events:none;}
+.join h2{font-size:3.2rem;font-weight:900;margin-bottom:16px;}
+.join h2 span{background:linear-gradient(135deg,#00f5a0,#00d9f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.join p{color:#555;font-size:1rem;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;}
+
+footer{padding:40px 48px;border-top:1px solid rgba(255,255,255,0.05);text-align:center;}
+footer p{font-size:0.7rem;color:#333;letter-spacing:2px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="window.scrollTo(0,0)">
+    <span class="logo-icon">🎮</span>
+    <span class="logo-text">GamerFair</span>
+  </div>
+  <div class="nav-links">
+    <a href="#games">Games</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#features">Features</a>
+    <a href="https://oliveryvo-cmd.github.io/kidshelp" target="_blank">KidsHelp</a>
+    <a href="signup.html" class="nav-btn">Play Free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">🎮 FAIR GAMING FOR EVERY KID</div>
+    <h1>Play Games.<br><span class="grad">Change the World.</span></h1>
+    <p>The gaming platform where every game is fun, fair, and makes a difference. Play, earn points, and help other kids worldwide.</p>
+    <div class="hero-btns">
+      <a href="signup.html" class="btn-main">🚀 Start Playing Free</a>
+      <a href="#games" class="btn-ghost">See Games ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="h-stat-n">100%</div><div class="h-stat-l">FREE TO PLAY</div></div>
+      <div><div class="h-stat-n">0</div><div class="h-stat-l">ADS EVER</div></div>
+      <div><div class="h-stat-n">∞</div><div class="h-stat-l">GAMES COMING</div></div>
+      <div><div class="h-stat-n">1</div><div class="h-stat-l">MISSION</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GAMES -->
+<div class="section" id="games">
+  <div class="section-tag">PLAY NOW</div>
+  <div class="section-h">Games That Matter</div>
+  <div class="section-sub">Every game on GamerFair is fun AND teaches something real — kindness, fairness, teamwork, and more.</div>
+  <div class="games-grid">
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);">
+        🚀
+        <div class="game-badge" style="background:rgba(0,245,160,0.2);color:#00f5a0;">🔥 HOT</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">Hyperblast</div>
+        <div class="game-desc">A fast-paced space shooter. Blast enemies, collect power-ups, survive as long as you can.</div>
+        <div class="game-meta">
+          <div class="game-tag">🎯 ACTION</div>
+          <a href="https://oliveryvo-cmd.github.io/hyperblast" target="_blank" class="game-play" style="background:linear-gradient(135deg,#00f5a0,#00d9f5);">Play →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a0533,#2d1b69,#11998e);">
+        ⚔️
+        <div class="game-badge" style="background:rgba(168,85,247,0.2);color:#a855f7;">⭐ NEW</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">Galactic Clash</div>
+        <div class="game-desc">Epic space battles between factions. Choose your side and fight for control of the galaxy.</div>
+        <div class="game-meta">
+          <div class="game-tag">🌌 STRATEGY</div>
+          <a href="https://oliveryvo-cmd.github.io/galacticclash" target="_blank" class="game-play" style="background:linear-gradient(135deg,#a855f7,#ec4899);">Play →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0d1117,#1a1a2e,#16213e);">
+        🐶
+        <div class="game-badge" style="background:rgba(249,115,22,0.2);color:#f97316;">🆕 NEW</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">Dogfight Galaxy</div>
+        <div class="game-desc">Pilot your ship through asteroid fields and enemy waves in this classic space shooter.</div>
+        <div class="game-meta">
+          <div class="game-tag">✈️ ARCADE</div>
+          <a href="https://oliveryvo-cmd.github.io/dogfight-galaxy" target="_blank" class="game-play" style="background:linear-gradient(135deg,#f97316,#ef4444);">Play →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#0f3460,#16213e,#0f3460);">
+        👾
+        <div class="game-badge" style="background:rgba(0,217,245,0.2);color:#00d9f5;">🎮 CLASSIC</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">AliveOrFear</div>
+        <div class="game-desc">Survive waves of enemies in this intense survival game. How long can you last?</div>
+        <div class="game-meta">
+          <div class="game-tag">💀 SURVIVAL</div>
+          <a href="https://oliveryvo-cmd.github.io/alivefear" target="_blank" class="game-play" style="background:linear-gradient(135deg,#00d9f5,#a855f7);">Play →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#134e5e,#71b280);">
+        🏎️
+        <div class="game-badge" style="background:rgba(249,115,22,0.2);color:#f97316;">🏆 RACE</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">RaceKRG</div>
+        <div class="game-desc">Hit the track and race to the finish. Beat your best time and climb the leaderboard.</div>
+        <div class="game-meta">
+          <div class="game-tag">🏁 RACING</div>
+          <a href="https://oliveryvo-cmd.github.io/racekrg" target="_blank" class="game-play" style="background:linear-gradient(135deg,#f97316,#ffd93d);">Play →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-card">
+      <div class="game-thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);">
+        🌟
+        <div class="game-badge" style="background:rgba(0,245,160,0.15);color:#00f5a0;">🔜 SOON</div>
+      </div>
+      <div class="game-info">
+        <div class="game-title">KindQuest</div>
+        <div class="game-desc">An RPG adventure where kindness is your superpower. Help characters, solve problems, save the world.</div>
+        <div class="game-meta">
+          <div class="game-tag">💛 RPG</div>
+          <a href="#" class="game-play" style="background:rgba(255,255,255,0.1);color:#fff;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features" id="features">
+  <div class="features-inner">
+    <div class="section-tag">WHY GAMERFAIR</div>
+    <div class="section-h">Gaming That's Actually Good</div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="feat-icon">🛡️</div>
+        <div class="feat-title">100% Safe</div>
+        <div class="feat-desc">No strangers, no bad content, no toxic behavior. GamerFair is a safe space for every kid.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🆓</div>
+        <div class="feat-title">Always Free</div>
+        <div class="feat-desc">Every game on GamerFair is free to play forever. No pay-to-win, no hidden costs.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🌍</div>
+        <div class="feat-title">Helps the World</div>
+        <div class="feat-desc">Every point you earn helps fund KidsHelp's mission to feed, protect, and connect kids worldwide.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🏆</div>
+        <div class="feat-title">Real Leaderboards</div>
+        <div class="feat-desc">Compete with kids around the world. Earn badges, climb the ranks, become a GamerFair legend.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="section" id="leaderboard">
+  <div class="section-tag">TOP PLAYERS</div>
+  <div class="section-h">Leaderboard</div>
+  <div class="section-sub">The best GamerFair players in the world. Can you make the list?</div>
+  <table class="lb-table">
+    <thead>
+      <tr>
+        <th>RANK</th>
+        <th>PLAYER</th>
+        <th>GAMES PLAYED</th>
+        <th>POINTS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="lb-rank">👑 #1</span></td>
+        <td><span class="lb-avatar" style="background:#ff6b6b">🔥</span><span class="lb-name">OliverCEO</span></td>
+        <td>47</td>
+        <td><span class="lb-pts">12,450</span></td>
+      </tr>
+      <tr>
+        <td><span class="lb-rank">🥈 #2</span></td>
+        <td><span class="lb-avatar" style="background:#4d96ff">⭐</span><span class="lb-name">KidBuilder99</span></td>
+        <td>38</td>
+        <td><span class="lb-pts">9,820</span></td>
+      </tr>
+      <tr>
+        <td><span class="lb-rank">🥉 #3</span></td>
+        <td><span class="lb-avatar" style="background:#00f5a0">🎮</span><span class="lb-name">GalaxyKid</span></td>
+        <td>31</td>
+        <td><span class="lb-pts">7,310</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:#666">#4</span></td>
+        <td><span class="lb-avatar" style="background:#a855f7">🚀</span><span class="lb-name">StarPlayer</span></td>
+        <td>24</td>
+        <td><span class="lb-pts">5,900</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:#666">#5</span></td>
+        <td><span class="lb-avatar" style="background:#f97316">🌟</span><span class="lb-name">FairGamer</span></td>
+        <td>19</td>
+        <td><span class="lb-pts">4,200</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- JOIN -->
+<div class="join">
+  <div class="join-bg"></div>
+  <div class="section-tag" style="text-align:center;">JOIN NOW</div>
+  <h2>Ready to Play?<br><span>It's Free Forever.</span></h2>
+  <p>Join GamerFair and be part of the fair gaming revolution. Play games. Earn points. Help kids worldwide.</p>
+  <a href="signup.html" class="btn-main">🎮 Start Playing Free</a>
+</div>
+
+<footer>
+  <p>🎮 GamerFair · A KidsHelp & NexaKid Product · Founded by Oliver Vo · Age 10 · 2026<br>
+  Fair gaming for every kid, everywhere.</p>
+</footer>
+
+</body>
+</html>
